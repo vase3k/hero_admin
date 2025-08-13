@@ -17,7 +17,6 @@ const HeroesListItem = ({ name, description, element, thumbnail }) => {
         default:
             elementClassName = 'bg-warning bg-gradient';
     }
-    console.log(thumbnail);
 
     return (
         <li className={`card flex-row mb-4 shadow-lg text-white ${elementClassName}`}>
