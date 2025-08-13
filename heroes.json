@@ -1,0 +1,32 @@
+{
+    "heroes": [
+        {
+            "id": 1,
+            "name": "Первый герой",
+            "thumbnail" : "https://i.pinimg.com/736x/a3/9e/44/a39e4458f31615b202a34c57dc3c8e64.jpg",
+            "description": "Первый герой в рейтинге!",
+            "element": "fire"
+        },
+        {
+            "id": 2,
+            "name": "Неизвестный герой",
+            "thumbnail" : "https://yt3.googleusercontent.com/ytc/AIdro_my--APlBVGAUfE0xz2By5Hig9XpGkX-j6DPajenULveQ=s900-c-k-c0x00ffffff-no-rj",
+            "description": "Скрывающийся в тени",
+            "element": "wind"
+        },
+        {
+            "id": 3,
+            "name": "Морской герой",
+            "thumbnail" : "https://i.pinimg.com/originals/e3/c8/e7/e3c8e7876d676d47e0dfae6fead74a0d.jpg",
+            "description": "Как аквамен, но не из DC",
+            "element": "water"
+        }
+    ],
+    "filters": [
+        "all",
+        "fire",
+        "water",
+        "wind",
+        "earth"
+    ]
+}
