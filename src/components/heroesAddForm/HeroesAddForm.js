@@ -1,13 +1,3 @@
-// Задача для этого компонента:
-// Реализовать создание нового героя с введенными данными. Он должен попадать
-// в общее состояние и отображаться в списке + фильтроваться
-// Уникальный идентификатор персонажа можно сгенерировать через uiid
-// Усложненная задача:
-// Персонаж создается и в файле json при помощи метода POST
-// Дополнительно:
-// Элементы <option></option> желательно сформировать на базе
-// данных из фильтров
-
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
@@ -15,12 +5,12 @@ import { v4 as uuid } from 'uuid';
 import { heroCreated } from '../../actions';
 
 const HeroesAddForm = () => {
+    const thumbnailDefalt =
+        'https://i.pinimg.com/originals/92/8c/99/928c995af69ca04add905a95e3149522.jpg';
     const [heroName, setHeroName] = useState('');
     const [heroDescription, setHeroDescription] = useState('');
     const [heroElement, setHeroElement] = useState('');
-    const [heroThumbnail, setHeroThumbnail] = useState(
-        'https://i.pinimg.com/originals/92/8c/99/928c995af69ca04add905a95e3149522.jpg'
-    );
+    const [heroThumbnail, setHeroThumbnail] = useState(thumbnailDefalt);
 
     const dispatch = useDispatch();
     const { request } = useHttp();
@@ -45,7 +35,7 @@ const HeroesAddForm = () => {
         setHeroName('');
         setHeroDescription('');
         setHeroElement('');
-        setHeroThumbnail('');
+        setHeroThumbnail(thumbnailDefalt);
     };
 
     return (
