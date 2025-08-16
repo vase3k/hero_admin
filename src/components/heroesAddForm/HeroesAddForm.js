@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
 import { v4 as uuid } from 'uuid';
-import { heroCreated } from '../../reducers/heroesSlice';
+import { heroCreated } from '../../slices/heroesSlice';
 
 const HeroesAddForm = () => {
     const thumbnailDefalt =

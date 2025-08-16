@@ -6,7 +6,7 @@ import {
     filtersFetched,
     filtersFetchingError,
     activeFilterChanged,
-} from '../../reducers/filtersSlice';
+} from '../../slices/filtersSlice';
 import classNames from 'classnames';
 
 const HeroesFilters = () => {
