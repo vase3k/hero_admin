@@ -3,7 +3,12 @@ import { useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSelector } from 'reselect';
 
-import { heroesFetching, heroesFetched, heroesFetchingError, heroDeleted } from '../../actions';
+import {
+    heroesFetching,
+    heroesFetched,
+    heroesFetchingError,
+    heroDeleted,
+} from '../../slices/heroesSlice';
 import HeroesListItem from '../heroesListItem/HeroesListItem';
 import Spinner from '../spinner/Spinner';
 

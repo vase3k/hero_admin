@@ -6,7 +6,7 @@ import {
     filtersFetched,
     filtersFetchingError,
     activeFilterChanged,
-} from '../../actions';
+} from '../../reducers/filtersSlice';
 import classNames from 'classnames';
 
 const HeroesFilters = () => {
@@ -20,6 +20,7 @@ const HeroesFilters = () => {
         request('http://localhost:3001/filters')
             .then(data => dispatch(filtersFetched(data)))
             .catch(() => dispatch(filtersFetchingError()));
+        // eslint-disable-next-line
     }, []);
 
     const onFilterChange = filter => {
