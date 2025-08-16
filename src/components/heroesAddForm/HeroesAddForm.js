@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHttp } from '../../hooks/http.hook';
-import { v4 as uuid } from 'uuid';
+import { nanoid } from '@reduxjs/toolkit';
 import { heroCreated } from '../../slices/heroesSlice';
 
 const HeroesAddForm = () => {
@@ -19,7 +19,7 @@ const HeroesAddForm = () => {
         e.preventDefault();
 
         const newHero = {
-            id: uuid(),
+            id: nanoid(),
             name: heroName,
             description: heroDescription,
             element: heroElement,
