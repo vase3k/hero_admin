@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { activeFilterChanged, fetchFilters } from '../../slices/filtersSlice';
+import { activeFilterChanged, fetchFilters, selectAll } from '../../slices/filtersSlice';
 import classNames from 'classnames';
+import Spinner from '../spinner/Spinner';
 
 const HeroesFilters = () => {
-    const filters = useSelector(state => state.filters.filters);
     const activeFilter = useSelector(state => state.filters.activeFilter);
+    const filtersLoadingStatus = useSelector(state => state.filtersLoadingStatus);
+    const filters = useSelector(state => selectAll(state));
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -13,33 +15,41 @@ const HeroesFilters = () => {
         // eslint-disable-next-line
     }, []);
 
-    const onFilterChange = filter => {
-        dispatch(activeFilterChanged(filter));
-    };
+    if (filtersLoadingStatus === 'loading') {
+        return <Spinner />;
+    } else if (filtersLoadingStatus === 'error') {
+        return <h5 className="text-center mt-5">Ошибка загрузки</h5>;
+    }
 
-    const renderFilters = () => {
-        if (filters.length === 0) {
+    const renderFilters = arr => {
+        if (arr.length === 0) {
             return <h5>Фильтры не найдены</h5>;
         }
 
-        return filters.map(({ name, label, className }) => {
+        return arr.map(({ name, label, className, id }) => {
             const btnClass = classNames('btn', className, {
                 active: name === activeFilter,
             });
 
             return (
-                <button key={name} className={btnClass} onClick={() => onFilterChange(name)}>
+                <button
+                    key={id}
+                    className={btnClass}
+                    onClick={() => dispatch(activeFilterChanged(name))}
+                >
                     {label}
                 </button>
             );
         });
     };
 
+    const elements = renderFilters(filters);
+
     return (
         <div className="card shadow-lg mt-4">
             <div className="card-body">
                 <p className="card-text">Отфильтруйте героев по элементам</p>
-                <div className="btn-group">{renderFilters()}</div>
+                <div className="btn-group">{elements}</div>
             </div>
         </div>
     );
