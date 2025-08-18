@@ -1,8 +1,6 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useHttp } from '../../hooks/http.hook';
 import { nanoid } from '@reduxjs/toolkit';
-import { heroCreated } from '../../slices/heroesSlice';
+import { useCreateHeroMutation } from '../../api/apiSlice';
 
 const HeroesAddForm = () => {
     const thumbnailDefalt =
@@ -12,8 +10,7 @@ const HeroesAddForm = () => {
     const [heroElement, setHeroElement] = useState('');
     const [heroThumbnail, setHeroThumbnail] = useState(thumbnailDefalt);
 
-    const dispatch = useDispatch();
-    const { request } = useHttp();
+    const [createHero] = useCreateHeroMutation();
 
     const onSubmitHandler = e => {
         e.preventDefault();
@@ -26,11 +23,7 @@ const HeroesAddForm = () => {
             thumbnail: heroThumbnail,
         };
 
-        dispatch(heroCreated(newHero));
-
-        request('http://localhost:3001/heroes', 'POST', JSON.stringify(newHero)).catch(e =>
-            console.log(e)
-        );
+        createHero(newHero).unwrap();
 
         setHeroName('');
         setHeroDescription('');
@@ -39,7 +32,10 @@ const HeroesAddForm = () => {
     };
 
     return (
-        <form className="border p-4 shadow-lg rounded" onSubmit={onSubmitHandler}>
+        <form
+            className="border p-4 shadow-lg rounded"
+            onSubmit={onSubmitHandler}
+        >
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">
                     Имя нового героя
